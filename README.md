@@ -10,6 +10,11 @@ This is a Flutter application that helps users set up port forwarding and revers
 
 ## Installation
 
+1. Download the zip file for your operating system from the releases page.
+2. Unzip to a suitable location and run the executable.
+
+<!-- ## Installation
+
 1. Download the installation file for your operating system from the releases page.
 2. Double-click the downloaded file to start the installation process.
 3. Follow the on-screen instructions to complete the installation.
@@ -21,7 +26,7 @@ This is a Flutter application that helps users set up port forwarding and revers
 3. Enter the necessary details such as the source and destination ports, and the IP address of the target device.
 4. Click the "Save" button to save the configuration for future use.
 5. Click the "Start" button to start the port forwarding or reversing process.
-6. The status of the process will be displayed in real-time, along with visual feedback on whether the process is successful or not.
+6. The status of the process will be displayed in real-time, along with visual feedback on whether the process is successful or not. -->
 
 ## Contributing
 
