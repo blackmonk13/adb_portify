@@ -1,16 +1,38 @@
-# adb_portify
+# Port Forwarding and Reversing Setup
 
-A new Flutter project.
+This is a Flutter application that helps users set up port forwarding and reversing on their Windows and Linux desktops.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Easy-to-use interface for setting up port forwarding and reversing.
+- Real-time updates and visual feedback on the status of the port forwarding and reversing.
+- Option to save and load configurations for future use.(WIP)
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Download the installation file for your operating system from the releases page.
+2. Double-click the downloaded file to start the installation process.
+3. Follow the on-screen instructions to complete the installation.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Usage
+
+1. Launch the application.
+2. Select the type of configuration you want to set up - port forwarding or reversing.
+3. Enter the necessary details such as the source and destination ports, and the IP address of the target device.
+4. Click the "Save" button to save the configuration for future use.
+5. Click the "Start" button to start the port forwarding or reversing process.
+6. The status of the process will be displayed in real-time, along with visual feedback on whether the process is successful or not.
+
+## Contributing
+
+If you would like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make the necessary changes and commit them.
+4. Push your changes to your forked repository.
+5. Create a pull request to merge your changes to the main repository.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more information.
