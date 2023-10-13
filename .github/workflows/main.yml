@@ -59,6 +59,9 @@ jobs:
         with:
           # The Flutter version to make available on the path
           flutter-version: '3.13.6'
+
+      - name: Install Ninja (Linux)
+        run: sudo apt-get install ninja-build
       
       - name: Install dependencies
         run: flutter pub get
