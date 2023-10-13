@@ -21,7 +21,7 @@ class AdbPath extends _$AdbPath {
 }
 
 @Riverpod(keepAlive: true)
-FutureOr<String?> adbFromSystemPath(Ref ref) async {
+FutureOr<String?> adbFromSystemPath(AdbFromSystemPathRef ref) async {
   final process = await Process.start('where', ['adb']);
   final output = await process.stdout.transform(const Utf8Decoder()).join();
   if (output.isEmpty) {
@@ -32,7 +32,7 @@ FutureOr<String?> adbFromSystemPath(Ref ref) async {
 }
 
 @riverpod
-FutureOr<Process?> adbProcess(Ref ref, List<String> args) async {
+FutureOr<Process?> adbProcess(AdbProcessRef ref, List<String> args) async {
   final adbPath = await ref.watch(adbPathProvider.future);
   if (adbPath == null) {
     return null;
@@ -47,7 +47,7 @@ FutureOr<Process?> adbProcess(Ref ref, List<String> args) async {
 }
 
 @riverpod
-Stream<List<String>> adbOutput(Ref ref, List<String> args) async* {
+Stream<List<String>> adbOutput(AdbOutputRef ref, List<String> args) async* {
   final process = await ref.read(adbProcessProvider(args).future);
 
   final output = <String>[];
@@ -72,15 +72,16 @@ Stream<List<String>> adbOutput(Ref ref, List<String> args) async* {
 
 @riverpod
 FutureOr<List<String>> adbDeviceOutput(
-  Ref ref,
+  AdbDeviceOutputRef ref,
   String serial,
   List<String> args,
 ) {
-  return ref.read(adbOutputProvider([
+  final deviceArgs = [
     '-s',
     serial,
     ...args,
-  ]).future);
+  ];
+  return ref.read(adbOutputProvider(deviceArgs).future);
 }
 
 @riverpod
@@ -92,7 +93,7 @@ class AdbDevices extends _$AdbDevices {
 
   Future<List<DeviceInfo>> getDevices() async {
     final adbOutput = await ref.read(adbOutputProvider(
-      [
+      const [
         'devices',
         '-l',
       ],
@@ -167,7 +168,7 @@ class DeviceProps extends _$DeviceProps {
   FutureOr<List<String>> getDeviceProps() async {
     final adbOutput = await ref.read(adbDeviceOutputProvider(
       deviceSerial,
-      [
+      const [
         'shell',
         'getprop',
       ],
@@ -191,12 +192,14 @@ class DevicePorts extends _$DevicePorts {
   }
 
   Future<List<PortInfo>> getDevicePorts() async {
+    final portArgs = [
+      reverse ? 'reverse' : 'forward',
+      '--list',
+    ];
+    
     final adbOutput = await ref.read(adbDeviceOutputProvider(
       deviceSerial,
-      [
-        reverse ? 'reverse' : 'forward',
-        '--list',
-      ],
+      portArgs,
     ).future);
 
     final ports = <PortInfo>[];
@@ -336,7 +339,6 @@ class PortsController extends _$PortsController {
   FutureOr<List<String>> removeAll({
     bool reverse = false,
   }) async {
-
     return adbDevicePortsOutput(
       [
         '--remove-all',
